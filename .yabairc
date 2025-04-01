@@ -3,8 +3,6 @@ sudo yabai --load-sa
 
 [ -f ~/.config/yabai/scripts/display_state.json ] && rm ~/.config/yabai/scripts/display_state.json
 
-
-
 yabai -m config focus_follows_mouse autofocus
 yabai -m config layout stack
 
