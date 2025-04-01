@@ -1,0 +1,45 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+[ -f ~/.config/yabai/scripts/display_state.json ] && rm ~/.config/yabai/scripts/display_state.json
+
+
+
+yabai -m config focus_follows_mouse autofocus
+yabai -m config layout stack
+
+# This is good enough for single display
+# TODO: auto detect when its single display and either restart yabai or switch properly
+#yabai -m config window_opacity on
+
+#opacity_value=0.80
+
+#apps_transparent="(Spotify|Ghostty)"
+
+#yabai -m signal --add event=window_focused app="^${apps_transparent}$" action="yabai -m config active_window_opacity $opacity_value"
+#yabai -m signal --add event=window_focused app="^${apps_transparent}$" action="yabai -m config normal_window_opacity 0.00001"
+
+#yabai -m signal --add event=window_focused app!="^${apps_transparent}$" action="yabai -m config active_window_opacity 1.0"
+#yabai -m signal --add event=window_focused app!="^${apps_transparent}$" action="yabai -m config normal_window_opacity 1.0"
+
+# Multi-Display Version that mostly works
+# Current issues 
+# - When moving windows to another display the contents on the starting and ending monitor don't change
+#   This is most apparent when moving a window with transparency as the invisible window below does not promote
+#   and the top window on the new display doesn't dim. attempted something with window moved event
+#   but I haven't been able to figure out how to be aware of the next item in the stack
+#   I'm currently unsure if yabai even has awareness of what is below focus in the stack before its promoted to focus
+#   current way to fix it is to move your mouse off to the original screen and back to trigger focus events
+# TODO: Figure out above issue
+# NOTES: 
+# - Window moved triggers on every frame where the window is being moved.
+#   While I don't think it affects how the fix would work its important to consider that the event is
+#   firing many times while being dragged. Could be fixed by some sort of debounce, however, it would
+#   potentially be an issue if you drag break for a second, drag break for a second. Increasing debounce
+#   times to too long could make things look laggy
+# - Above can be dealt with using hotkeys to move windows to seperate displays. This is my preferred method
+#   of moving windows but I wanted to deal with all edge cases.
+# - It's possible that rather than using yabai hammerspoon could have some form of implementation to deal with this
+# - It's likely that I will need to implement some form of delay for the floating window to be introduced to the top layer
+# - I am not sure if above is how it works
+yabai -m signal --add event=window_focused action="~/.config/yabai/scripts/per_display_transparency.sh"

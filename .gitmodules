@@ -1,0 +1,6 @@
+[submodule ".config/.config/nvim"]
+	path = .config/.config/nvim
+	url = https://github.com/Jadoking/nvim.git
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/Jadoking/nvim.git
