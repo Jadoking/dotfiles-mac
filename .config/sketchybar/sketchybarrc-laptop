@@ -14,7 +14,7 @@ sketchybar --bar \
     sticky=on \
     padding_left=23 \
     padding_right=23 \
-    notch_width=188 \
+    notch_width=320 \
     display=main
 
 # Alternatiive background colors

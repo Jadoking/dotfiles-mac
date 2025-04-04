@@ -4,6 +4,10 @@ local hyper = {"cmd", "alt", "ctrl", "shift"}
 -- Define App Mode
 local appMode = hs.hotkey.modal.new(hyper, "space")
 
+appMode:bind({}, "escape", function()
+  appMode:exit()
+end)
+
 local function focusAppOnCurrentDisplay(appName, fallback)
   local app = hs.application.find(appName)
   if not app then
