@@ -1,7 +1,15 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-ICON_PADDING_RIGHT=5
-ICON=
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
-sketchybar --set $NAME icon=$ICON icon.padding_right=$ICON_PADDING_RIGHT
-sketchybar --set $NAME.name label="$INFO" icon.background.image="app.$INFO" 
+APP_NAME="$INFO"
+[ -z "$APP_NAME" ] && APP_NAME="App"
+
+LABEL=$(sketchybar --query front_app.name | jq -r '.label.value')
+TRACKER="${LABEL##* · }"
+[[ "$TRACKER" == "$LABEL" ]] && TRACKER="あ｜い｜う｜え｜お"
+
+sketchybar --set front_app.name label="$APP_NAME · $TRACKER"
+
+
+

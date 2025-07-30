@@ -1,10 +1,21 @@
 #!/bin/bash
 
-# If you cant to show the time
-# sketchybar --set $NAME icon="$(date '+%a %d. %b')" label="$(date '+%H:%M')"
-# sketchybar --set $NAME icon="$(date '+%a %d. %b %Y %H:%M')"
-# sketchybar --set $NAME icon="$(date '+%a %d%b%y %H:%M')"
-sketchybar --set $NAME icon="$(date '+%a %y/%m/%d %H:%M')"
+# Format local time
+LOCAL_TIME=$(date '+%a %y/%m/%d %H:%M')
 
-# In case you don't want to show the time
-# sketchybar --set $NAME icon="$(date '+%a %d. %b %Y')"
+# Determine opposite timezone
+CURRENT_TZ=$(date +%Z)
+if [[ "$CURRENT_TZ" == "JST" || "$CURRENT_TZ" == "Japan" ]]; then
+  OTHER_TIME=$(TZ="America/Los_Angeles" date '+%m/%d %H:%M')
+  OTHER_LABEL="LA $OTHER_TIME"
+else
+  OTHER_TIME=$(TZ="Asia/Tokyo" date '+%m/%d %H:%M')
+  OTHER_LABEL="JST $OTHER_TIME"
+fi
+
+# Combine into one label
+LABEL="$LOCAL_TIME | $OTHER_LABEL"
+
+# Apply to bar item
+sketchybar --set "$NAME" label="$LABEL"
+

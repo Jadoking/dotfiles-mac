@@ -143,7 +143,7 @@ spotify_repeat=(
 )
 
 spotify_controls=(
-  background.color=$GREEN
+  background.color=0xffa0d9ef
   background.corner_radius=11
   background.drawing=on
   y_offset=-45

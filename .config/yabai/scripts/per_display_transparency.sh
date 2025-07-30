@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Apps that should trigger transparency logic
-apps_transparent="^(Spotify|Ghostty)$"
+apps_transparent="^(Spotify|Obsidian)$"
 
 # Opacity values
 opacity_active="0.80"

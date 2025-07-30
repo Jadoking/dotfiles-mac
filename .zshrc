@@ -1,7 +1,17 @@
 alias dotfiles=/usr/bin/git --git-dir=/Users/jadoking/.dotfiles-mac --work
-source ~/other_code/alien/alien.zsh
+ZSH_THEME="simplerich"
+source ~/other_code/simplerich-zsh-theme/zsh-git-prompt/zshrc.sh
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/code
+source virtualenvwrapper.sh
+source ~/.env
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/Library/Python/3.9/bin:$HOME/.cargo/env
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -12,25 +22,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
 # ZSH_THEME="robbyrussell"
-
-export ALIEN_SECTIONS_LEFT=(
-  exit
-  user
-  path
-  git
-  vcs_branch:async
-  vcs_status:async
-  vcs_dirty:async newline
-  ssh
-  venv
-  prompt
-)
-
-export ALIEN_SECTIONS_RIGHT=(
-  time
-)
-
-export ALIEN_THEME="blue"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -124,3 +115,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# bun completions
+[ -s "/Users/jadoking/.bun/_bun" ] && source "/Users/jadoking/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

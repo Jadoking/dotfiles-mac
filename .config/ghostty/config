@@ -1,6 +1,12 @@
-theme = ForestBlue
+title = jadoking
+theme = "citruszest" 
 font-family = "Mononoki Nerd Font"
-font-size = 14.0
-background-opacity = 0.60
+font-size = 24.0
+background-opacity = 0.80
 background-blur = 20
+#background = 03045e 
+copy-on-select = true
+
+keybind=performable:ctrl+alt+shift+super+d=scroll_page_up
+keybind=performable:ctrl+alt+shift+super+s=scroll_page_down
 
