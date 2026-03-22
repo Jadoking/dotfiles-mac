@@ -10,6 +10,8 @@ sketchybar --bar \
     height=32 \
     color=0x66494d64 \
     margin=0 \
+    topmost=on \
+    show_in_fullscreen=on \
     sticky=on \
     padding_left=0 \
     padding_right=0 \

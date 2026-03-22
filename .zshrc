@@ -1,11 +1,19 @@
-alias dotfiles=/usr/bin/git --git-dir=/Users/jadoking/.dotfiles-mac --work
-ZSH_THEME="simplerich"
-source ~/other_code/simplerich-zsh-theme/zsh-git-prompt/zshrc.sh
+# Auto-launch tmux if not already in a tmux session
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux new-session -A -s main
+fi
+
+alias dotfiles='/usr/bin/git --git-dir=/Users/jadoking/.dotfiles-mac --work-tree=$HOME'
+alias vim='nvim'
+# Pure prompt (installed via npm)
+autoload -U promptinit; promptinit
+prompt pure
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/code
 source virtualenvwrapper.sh
 source ~/.env
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -83,7 +91,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,3 +130,5 @@ source $ZSH/oh-my-zsh.sh
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

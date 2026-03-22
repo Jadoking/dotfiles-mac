@@ -13,6 +13,8 @@ sketchybar --bar \
     color=0x00000000 \
     blur_radius=30 \
     margin=0 \
+    topmost=on \
+    show_in_fullscreen=on \
     sticky=on \
     padding_left=20 \
     padding_right=20 \
@@ -114,4 +116,3 @@ sketchybar --add item battery right \
 
 # === Finalize ===
 sketchybar --update
-
